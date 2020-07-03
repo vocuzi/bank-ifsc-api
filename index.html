@@ -1,0 +1,29 @@
+
+<!DOCTYPE html><html><head><title></title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><style type="text/css">
+			html{
+				background:#eee;
+			}
+			.container{
+				min-width:320px;
+				width:64%;
+				max-width:40em;
+				margin:10vh auto;
+			}
+		</style></head><body><main class="container content box"><h1 class="title">Details with IFSC Code</h1><div class="notification is-info" id="message-test1"></div><form id="test1"><div class="field"><label class="label" for="the_name">IFSC Code</label><input type="text" name="ifsc" id="the_name" class="input"></div><div class="field"><input type="button" data-formid="test1" value="Submit" class="button is-primary"></div></form></main><main class="container content box"><h1 class="title">Details with Bank name and Address</h1><div class="notification is-info" id="message-test2"></div><form id="test2"><div class="field"><label class="label" for="the_name">Bank Name</label><input type="text" name="name" id="the_name" class="input"></div><div class="field"><label class="label" for="the_email">City</label><input type="text" name="city" id="the_email" class="input"></div><div class="field"><input type="button" data-formid="test2" value="Submit" class="button is-primary"></div></form></main></body><script type="text/javascript">
+		$("input.button").click(function(){
+			formId = `#${$(this).attr("data-formid")}`;
+			message = `#message-${$(this).attr("data-formid")}`;
+			console.log(formId);
+			 $.ajax({
+			        url: 'http://bank.vocuzi.in/',
+			        type: 'post',
+			        dataType: 'json',
+			        data: $(formId).serialize(),
+			        success: function(data,status) {
+			        	msg = `${status} : check console for data`
+			        	console.log(data);
+			        	$(message).text(msg);
+			        }
+			    });
+		});
+	</script></html>
