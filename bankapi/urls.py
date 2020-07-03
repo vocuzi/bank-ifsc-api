@@ -19,5 +19,5 @@ from api.views import bank_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('banks/', bank_details),
+    path('', bank_details),
 ]
